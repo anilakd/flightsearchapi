@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+  datasource:
+    username: sa
+    password: as
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+
+  flyway:
+    url: jdbc:h2:mem:testdb
+    user: sa
+    password: as
+    baseline-on-migrate: true
+    baseline-description: "init"
