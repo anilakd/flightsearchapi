@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class AirportMapper {
+public final class AirportMapper {
 
     @Lazy
     private final CityService cityService;

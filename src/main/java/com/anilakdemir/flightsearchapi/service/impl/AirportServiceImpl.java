@@ -70,14 +70,13 @@ public class AirportServiceImpl implements AirportService {
     @Override
     public void deleteById(Long id) {
 
-        boolean isExists = airportRepository.existsById(id);
+        boolean existsById = airportRepository.existsById(id);
 
-        if (isExists) {
-            airportRepository.deleteById(id);
-        } else {
+        if (existsById) {
             throw new NotFoundException(AirportErrorMessage.AIRPORT_NOT_FOUND);
         }
 
+        airportRepository.deleteById(id);
     }
 
     @Override
@@ -89,9 +88,15 @@ public class AirportServiceImpl implements AirportService {
 
         PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, sort);
 
-        Page<Airport> all = airportRepository.findAllByOrderByCity_PlateCodeAsc(pageRequest);
+        Page<Airport> pageResponse = airportRepository.findAll(pageRequest);
 
-        return all.get().map(airportMapper::mapToAirportResponseDTO).collect(Collectors.toList());
+        return pageResponse.get().map(airportMapper::mapToAirportResponseDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public Airport findById(Long id) {
+        return airportRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(AirportErrorMessage.AIRPORT_NOT_FOUND));
     }
 
     private boolean isAirportExistsByNameAndPlateCode(String name, Integer plateCode) {
