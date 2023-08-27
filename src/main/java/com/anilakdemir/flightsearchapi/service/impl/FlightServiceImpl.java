@@ -15,6 +15,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -75,6 +78,17 @@ public class FlightServiceImpl implements FlightService {
 
         return pageResponse.get().map(flightMapper::mapToFlightResponseDTO).collect(Collectors.toList());
 
+    }
+
+    @Override
+    public List<FlightResponseDTO> findByDepartureIdAndArrivalIdAndDepartureTime(Long departureAirportId, Long arrivalAirportId, LocalDate departureTime) {
+
+        LocalDateTime startDate = LocalDateTime.of(departureTime, LocalTime.of(0, 0, 0, 0));
+        LocalDateTime endDate = LocalDateTime.of(departureTime.plusDays(1), LocalTime.of(0, 0, 0, 0));
+
+        List<Flight> flights = flightRepository.findAllByArrivalAirport_IdAndDepartureAirport_IdAndDepartureTimeBetweenOrderByDepartureTime(arrivalAirportId, departureAirportId, startDate, endDate);
+
+        return flights.stream().map(flightMapper::mapToFlightResponseDTO).toList();
     }
 
     private boolean isExistsById(Long id) {

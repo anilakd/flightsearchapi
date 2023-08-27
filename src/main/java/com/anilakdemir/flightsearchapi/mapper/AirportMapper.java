@@ -5,7 +5,7 @@ import com.anilakdemir.flightsearchapi.dto.AirportResponseDTO;
 import com.anilakdemir.flightsearchapi.dto.AirportUpdateRequestDTO;
 import com.anilakdemir.flightsearchapi.entity.Airport;
 import com.anilakdemir.flightsearchapi.entity.City;
-import com.anilakdemir.flightsearchapi.service.impl.CityService;
+import com.anilakdemir.flightsearchapi.service.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;

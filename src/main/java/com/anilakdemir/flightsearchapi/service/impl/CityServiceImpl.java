@@ -2,12 +2,13 @@ package com.anilakdemir.flightsearchapi.service.impl;
 
 import com.anilakdemir.flightsearchapi.entity.City;
 import com.anilakdemir.flightsearchapi.repository.CityRepository;
+import com.anilakdemir.flightsearchapi.service.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CityServiceImpl implements CityService{
+public class CityServiceImpl implements CityService {
 
     private final CityRepository cityRepository;
 

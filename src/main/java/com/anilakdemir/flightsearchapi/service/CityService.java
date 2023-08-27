@@ -1,4 +1,4 @@
-package com.anilakdemir.flightsearchapi.service.impl;
+package com.anilakdemir.flightsearchapi.service;
 
 import com.anilakdemir.flightsearchapi.entity.City;
 
