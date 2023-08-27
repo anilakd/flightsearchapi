@@ -2,7 +2,6 @@ package com.anilakdemir.flightsearchapi.security.service;
 
 import com.anilakdemir.flightsearchapi.dto.LoginRequest;
 import com.anilakdemir.flightsearchapi.dto.SignupRequest;
-import com.anilakdemir.flightsearchapi.security.JwtConstants;
 import com.anilakdemir.flightsearchapi.security.JwtTokenProvider;
 import com.anilakdemir.flightsearchapi.security.JwtUserDetails;
 import com.anilakdemir.flightsearchapi.service.UserService;
@@ -30,11 +29,7 @@ public class AuthenticationService {
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String token = jwtTokenProvider.generateJwtToken(authentication);
-
-        String bearer = JwtConstants.BEARER.getConstant();
-
-        return bearer + token;
+        return jwtTokenProvider.generateJwtToken(authentication);
     }
 
     public void register(SignupRequest signupRequest) {

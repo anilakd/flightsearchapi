@@ -63,6 +63,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             if (fullToken.startsWith(bearer)) {
                 token = fullToken.substring(bearer.length());
+                System.out.println(token);
             }
         }
         return token;

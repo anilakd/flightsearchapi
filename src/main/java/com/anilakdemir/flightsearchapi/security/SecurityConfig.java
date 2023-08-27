@@ -59,6 +59,7 @@ public class SecurityConfig {
                         auth.requestMatchers(antMatcher("/h2-console/**")).permitAll()
                                 .requestMatchers(antMatcher("/v3/api-docs/**")).permitAll()
                                 .requestMatchers(antMatcher("/swagger-ui/**")).permitAll()
+                                .requestMatchers(antMatcher("/swagger-ui.html")).permitAll()
                                 .requestMatchers(antMatcher("/v1/auth/**")).permitAll()
                                 .anyRequest().authenticated()
                 );

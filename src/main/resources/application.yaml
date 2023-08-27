@@ -38,3 +38,5 @@ flightsearch:
       expire:
         time: 86400000
 
+application:
+  title: Flight Search API
