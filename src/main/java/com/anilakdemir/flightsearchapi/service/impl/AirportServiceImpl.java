@@ -4,6 +4,9 @@ import com.anilakdemir.flightsearchapi.dto.AirportCreateRequestDTO;
 import com.anilakdemir.flightsearchapi.dto.AirportResponseDTO;
 import com.anilakdemir.flightsearchapi.dto.AirportUpdateRequestDTO;
 import com.anilakdemir.flightsearchapi.entity.Airport;
+import com.anilakdemir.flightsearchapi.exception.AlreadyExistsException;
+import com.anilakdemir.flightsearchapi.exception.NotFoundException;
+import com.anilakdemir.flightsearchapi.exception.enums.AirportErrorMessage;
 import com.anilakdemir.flightsearchapi.mapper.AirportMapper;
 import com.anilakdemir.flightsearchapi.repository.AirportRepository;
 import com.anilakdemir.flightsearchapi.service.AirportService;
@@ -32,7 +35,7 @@ public class AirportServiceImpl implements AirportService {
 
         // checks to have an airport with the same name in a city.
         if (isAirportExistsByNameAndPlateCode(name, plateCode)) {
-            throw new RuntimeException("Airport is already exists");
+            throw new AlreadyExistsException(AirportErrorMessage.ALREADY_IN_USE);
         }
 
         Airport airport = airportMapper.mapToAirport(airportCreateRequestDTO);
@@ -47,14 +50,14 @@ public class AirportServiceImpl implements AirportService {
 
 
         if (!isExistsById(airportUpdateRequestDTO.getId())) {
-            throw new RuntimeException(String.format("Airport could not found by id %d", airportUpdateRequestDTO.getId()));
+            throw new NotFoundException(AirportErrorMessage.AIRPORT_NOT_FOUND);
         }
 
         String name = airportUpdateRequestDTO.getName();
         Integer plateCode = airportUpdateRequestDTO.getPlateCode();
 
         if (isAirportExistsByNameAndPlateCode(name, plateCode)) {
-            throw new RuntimeException("Airport is already exists");
+            throw new AlreadyExistsException(AirportErrorMessage.ALREADY_IN_USE);
         }
 
         Airport airport = airportMapper.mapToAirport(airportUpdateRequestDTO);
@@ -72,7 +75,7 @@ public class AirportServiceImpl implements AirportService {
         if (isExists) {
             airportRepository.deleteById(id);
         } else {
-            throw new RuntimeException("Airport could not found");
+            throw new NotFoundException(AirportErrorMessage.AIRPORT_NOT_FOUND);
         }
 
     }
