@@ -17,7 +17,7 @@ public class RestResponse<T> implements Serializable {
     private boolean isSuccess;
     private String message;
 
-    public static <T> RestResponse<T> of (T t) {
+    public static <T> RestResponse<T> of(T t) {
         return RestResponse.<T>builder()
                 .responseDate(new Date())
                 .data(t)
@@ -25,7 +25,7 @@ public class RestResponse<T> implements Serializable {
                 .build();
     }
 
-    public static <T> RestResponse<T> error (T t) {
+    public static <T> RestResponse<T> error(T t) {
         return RestResponse.<T>builder()
                 .responseDate(new Date())
                 .data(t)
@@ -33,7 +33,7 @@ public class RestResponse<T> implements Serializable {
                 .build();
     }
 
-    public static <T> RestResponse<T> empty () {
+    public static <T> RestResponse<T> empty() {
         return RestResponse.<T>builder()
                 .responseDate(new Date())
                 .data(null)
@@ -41,7 +41,7 @@ public class RestResponse<T> implements Serializable {
                 .build();
     }
 
-    public void setMessage (String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 }

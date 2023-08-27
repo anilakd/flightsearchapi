@@ -1,7 +1,7 @@
 server:
   port: 8080
   servlet:
-    context-path: "/"
+    context-path: ""
 
 spring:
   jpa:
@@ -27,12 +27,14 @@ spring:
     password: as
     baseline-on-migrate: true
     baseline-description: "init"
-
+  main:
+    allow-circular-references: true
 
 flightsearch:
-  app:
-    jwtSecret: "anilakdemir"
-    jwtExpirationMs: 36000
-    jwtCookieName: "flightSearchCookieName"
-
+  jwt:
+    security:
+      app:
+        key: SkRrYL4j4nG6P6SMmwNJBDfRbyrip1BFTOcf8g46sLWd92ytDoyyz3xzyBnaY4csnD1BGLnrmJss8qsPtbL9zPeHkwEx7f1y
+      expire:
+        time: 86400000
 

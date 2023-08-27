@@ -21,10 +21,10 @@ public class FlightUpdateRequestDTO {
 
     private Long arrivalAirportId;
 
-    @Schema(type="string" , example = "2023-08-27T00:00")
+    @Schema(type = "string", example = "2023-08-27T00:00")
     private LocalDateTime departureTime;
 
-    @Schema(type="string" , example = "2023-08-27T00:00")
+    @Schema(type = "string", example = "2023-08-27T00:00")
     private LocalDateTime arrivalTime;
 
     private BigDecimal price;

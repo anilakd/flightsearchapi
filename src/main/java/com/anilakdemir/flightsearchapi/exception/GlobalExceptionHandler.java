@@ -13,24 +13,6 @@ import java.util.Date;
 @RestControllerAdvice
 public final class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler
-    public ResponseEntity<RestResponse<GeneralException>> handleAlreadyExistsException (AlreadyExistsException exception, WebRequest webRequest) {
-
-        RestResponse<GeneralException> restResponse = getGeneralExceptionRestResponse(exception.getBaseErrorMessage(), webRequest);
-
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(restResponse);
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<RestResponse<GeneralException>> handleEntityNotFoundException (NotFoundException exception, WebRequest webRequest) {
-
-        RestResponse<GeneralException> restResponse = getGeneralExceptionRestResponse(exception.getBaseErrorMessage(), webRequest);
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(restResponse);
-    }
-
-
-
     private static RestResponse<GeneralException> getGeneralExceptionRestResponse(BaseErrorMessage exception, WebRequest webRequest) {
 
         Date errorDate = new Date();
@@ -42,5 +24,21 @@ public final class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         RestResponse<GeneralException> restResponse = RestResponse.error(generalException);
         restResponse.setMessage(message);
         return restResponse;
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<RestResponse<GeneralException>> handleAlreadyExistsException(AlreadyExistsException exception, WebRequest webRequest) {
+
+        RestResponse<GeneralException> restResponse = getGeneralExceptionRestResponse(exception.getBaseErrorMessage(), webRequest);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(restResponse);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<RestResponse<GeneralException>> handleEntityNotFoundException(NotFoundException exception, WebRequest webRequest) {
+
+        RestResponse<GeneralException> restResponse = getGeneralExceptionRestResponse(exception.getBaseErrorMessage(), webRequest);
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(restResponse);
     }
 }

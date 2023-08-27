@@ -27,6 +27,7 @@ public class FlightServiceImpl implements FlightService {
 
     private final FlightRepository flightRepository;
     private final FlightMapper flightMapper;
+
     @Override
     public FlightResponseDTO create(FlightCreateRequestDTO flightCreateRequestDTO) {
 

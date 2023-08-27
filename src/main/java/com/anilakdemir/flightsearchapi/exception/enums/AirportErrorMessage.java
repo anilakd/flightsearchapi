@@ -10,12 +10,12 @@ public enum AirportErrorMessage implements BaseErrorMessage {
     ;
     private final String message;
 
-    AirportErrorMessage (String message) {
+    AirportErrorMessage(String message) {
         this.message = message;
     }
 
     @Override
-    public String getMessage () {
+    public String getMessage() {
         return message;
     }
 }

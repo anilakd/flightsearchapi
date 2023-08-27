@@ -2,18 +2,22 @@ package com.anilakdemir.flightsearchapi.exception.enums;
 
 import com.anilakdemir.flightsearchapi.exception.BaseErrorMessage;
 
-public enum FlightErrorMessage implements BaseErrorMessage {
+public enum UserErrorMessage implements BaseErrorMessage {
 
-    FLIGHT_NOT_FOUND("Airport could not found"),
+    USER_NOT_FOUND("User could not found"),
     ;
-    private final String message;
 
-    FlightErrorMessage(String message) {
+
+    private String message;
+
+    UserErrorMessage(String message) {
         this.message = message;
     }
 
+    ;
+
     @Override
     public String getMessage() {
-        return message;
+        return this.message;
     }
 }
